@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Application Submitted{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div style="text-align: center;">
+    <div style="font-size: 80px; color: #2ecc71; margin-bottom: 20px;">✓</div>
+    <h1 style="color: #2ecc71;">OK</h1>
+    <p>Your application has been submitted successfully.</p>
+    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">Redirecting to home...</p>
+    
+    <div class="actions" style="margin-top: 40px;">
+      <a class="btn" href="/">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Redirect to home page after 3 seconds (3000ms)
+  setTimeout(function() {
+    window.location.href = "/";
+  }, 3000);
+</script>
+{% endblock %}
+
