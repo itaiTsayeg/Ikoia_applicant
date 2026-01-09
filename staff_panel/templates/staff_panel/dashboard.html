@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Staff Dashboard{% endblock %}
+
+{% block content %}
+  <form method="post" action="{% url 'logout' %}" style="text-align:right; margin-bottom:1rem;">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-small">Logout</button>
+  </form>
+
+
+  <section class="hero">
+    <h1>Staff Dashboard</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Job</th>
+          <th>Resume</th>
+          <th>Applied</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in applicants %}
+          <tr>
+            <td>{{ a.id_number }}</td>
+            <td>{{ a.first_name }} {{ a.last_name }}</td>
+            <td>{{ a.email }}</td>
+            <td>{{ a.phone }}</td>
+            <td>{{ a.get_job_type_display }}</td>
+            <td>
+              {% if a.cv_pdf %}
+                <a href="{{ a.cv_pdf.url }}" target="_blank">Resume</a>
+              {% endif %}
+            </td>
+            <td>{{ a.created_at|date:"Y-m-d" }}</td>
+            <td>
+            <!-- <a class="btn btn-small"
+              href="#">
+              Edit
+            </a> -->
+
+            <a class="btn btn-small btn-danger"
+              href="{% url 'applicant_delete_confirm' a.pk %}">
+              Reject
+            </a>
+           </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="8">No applicants yet.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

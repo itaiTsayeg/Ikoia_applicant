@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Apply{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Apply – {{ job_type|title }}</h1>
+    <p>Fill the form and upload your CV (PDF).</p>
+
+    <form method="post" enctype="multipart/form-data" class="form">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button class="btn btn-accent" type="submit">Submit</button>
+      <a class="btn" href="/">Cancel</a>
+    </form>
+  </section>
+{% endblock %}

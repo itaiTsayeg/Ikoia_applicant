@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}IKOIA Careers{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+    <header class="topbar">
+      <div class="brand">IKOIA</div>
+      <nav class="nav">
+        <a href="/">Careers</a>
+        <a href="{% url 'staff_dashboard' %}">Staff Panel</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+
+  </body>
+</html>
