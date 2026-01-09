@@ -18,6 +18,15 @@
     </header>
 
     <main class="container">
+      {% if messages %}
+        {% for message in messages %}
+          <div id="flash-message" class="flash-success">
+            {{ message }}✅
+          </div>
+        {% endfor %}
+      {% endif %}
+
+  
       {% block content %}{% endblock %}
     </main>
 

@@ -96,15 +96,16 @@ def test_apply_submission_success(client, pdf_file):
     # Verify count before
     assert Applicant.objects.count() == 0
     
-    response = client.post(url, data, follow=True)
+    # We expect a direct render of the success page (200 OK), not a redirect (302)
+    response = client.post(url, data)
     
     # Check if form has errors
     if "form" in response.context:
         print(response.context["form"].errors)
 
-    # Check redirection to home
+    # Check success page rendered
     assert response.status_code == 200
-    assert "home.html" in [t.name for t in response.templates]
+    assert "success.html" in [t.name for t in response.templates]
     
     # Verify DB creation
     assert Applicant.objects.count() == 1

@@ -15,7 +15,7 @@ def apply(request, job_type):
             applicant = form.save(commit=False)
             applicant.job_type = job_type  
             applicant.save()
-            return redirect("home")
+            return render(request, "success.html")
     else:
         form = ApplicantForm(initial={"job_type": job_type})
 
